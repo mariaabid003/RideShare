@@ -1,0 +1,47 @@
+# ===== Secrets — NEVER commit =====
+.env
+*.env
+!.env.example
+warehouse/.env
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# ===== Data lake (generated, can be large) =====
+datalake/
+*.parquet
+
+# ===== Spark =====
+.ivy2/
+spark-warehouse/
+metastore_db/
+derby.log
+*.crc
+_SUCCESS
+
+# ===== dbt =====
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+logs/
+.user.yml
+
+# ===== Great Expectations =====
+dq/gx/uncommitted/
+dq/great_expectations/uncommitted/
+
+# ===== Docker =====
+# (compose files ARE tracked; only local volumes/state are ignored)
+
+# ===== OS / editor =====
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log

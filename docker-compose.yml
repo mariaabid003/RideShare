@@ -1,0 +1,69 @@
+# Local dev stack for the ride-sharing pipeline.
+#   - kafka : single-node Kafka (KRaft, no Zookeeper)
+#   - spark : Structured Streaming job that lands the Bronze layer
+# Start everything:   docker compose up -d --build
+# Stop everything:    docker compose down
+# Logs for the job:   docker compose logs -f spark
+services:
+  kafka:
+    image: apache/kafka:3.7.0
+    container_name: rideshare-kafka
+    ports:
+      - "9092:9092"     # host listener -> used by the Python producer on the host
+    environment:
+      # --- KRaft mode (broker + controller in one node) ---
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      # --- Two broker listeners ---
+      #   PLAINTEXT (9092)  -> reachable from the host as localhost:9092
+      #   INTERNAL (29092)  -> reachable from other containers as kafka:29092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,INTERNAL://0.0.0.0:29092,CONTROLLER://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,INTERNAL://kafka:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,INTERNAL:PLAINTEXT
+      # --- Single-node replication settings ---
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_LOG_DIRS: /tmp/kraft-combined-logs
+
+  spark:
+    build: ./spark
+    container_name: rideshare-spark
+    depends_on:
+      - kafka
+    restart: on-failure          # retry if Kafka isn't ready on first boot
+    volumes:
+      - ./spark:/opt/app                 # the job code (edit on host, no rebuild)
+      - ./datalake:/opt/datalake         # Bronze parquet lands here on your host
+    environment:
+      KAFKA_BOOTSTRAP: kafka:29092
+      KAFKA_TOPIC: ride-events
+      BRONZE_PATH: /opt/datalake/bronze
+      CHECKPOINT_PATH: /opt/datalake/_checkpoints/bronze
+    command: >
+      spark-submit
+      --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1
+      --conf spark.jars.ivy=/tmp/.ivy2
+      /opt/app/bronze_stream.py
+
+  # One-off daily batch job (Phase 3). Does NOT auto-start with `up`.
+  # Run it on demand:  docker compose run --rm spark-batch
+  # Process one day:   docker compose run --rm -e PROCESS_DATE=2026-06-19 spark-batch
+  spark-batch:
+    build: ./spark
+    profiles: ["batch"]          # excluded from `docker compose up`
+    volumes:
+      - ./spark:/opt/app
+      - ./datalake:/opt/datalake
+    environment:
+      BRONZE_PATH: /opt/datalake/bronze
+      SILVER_PATH: /opt/datalake/silver
+    command: >
+      spark-submit
+      --conf spark.jars.ivy=/tmp/.ivy2
+      /opt/app/silver_batch.py

@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "Landing tables loaded from the local data lake by load_to_snowflake.py"
+    database: "{{ env_var('SNOWFLAKE_DATABASE') }}"
+    schema: RAW
+    tables:
+      - name: rides
+        description: "One row per completed + paid ride (built from Bronze)."
+      - name: silver_daily_city_metrics
+        description: "Phase 3 daily aggregates per city."
+      - name: silver_hourly_demand
+        description: "Phase 3 hourly ride-request demand with peak-hour flag."

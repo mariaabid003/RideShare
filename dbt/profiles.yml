@@ -1,0 +1,18 @@
+# dbt connection profile. Reads everything from environment variables so no
+# secrets live in the repo. Run dbt from this folder with:
+#     dbt run --profiles-dir .
+# (or set DBT_PROFILES_DIR to this folder)
+rideshare:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: "{{ env_var('SNOWFLAKE_ROLE', 'ACCOUNTADMIN') }}"
+      warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE') }}"
+      database: "{{ env_var('SNOWFLAKE_DATABASE') }}"
+      schema: GOLD
+      threads: 4
+      client_session_keep_alive: false

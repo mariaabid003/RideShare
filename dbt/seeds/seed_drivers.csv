@@ -1,0 +1,201 @@
+driver_id,driver_name,rating,home_zone,primary_vehicle,joined_date
+driver_0001,Fatima Khan,4.64,Saddar,go_plus,2023-12-04
+driver_0002,Rabia Malik,4.43,Clifton,go,2022-04-08
+driver_0003,Asad Siddiqui,3.64,Saddar,bike,2023-08-19
+driver_0004,Zain Chaudhry,4.82,Gulshan,bike,2024-05-05
+driver_0005,Usman Chaudhry,4.07,DHA,bike,2022-06-28
+driver_0006,Imran Siddiqui,3.97,Clifton,bike,2022-07-03
+driver_0007,Rabia Butt,4.76,Landhi,business,2023-12-03
+driver_0008,Ahmed Ansari,3.92,Korangi,go,2023-02-13
+driver_0009,Zain Hussain,4.49,Malir,go_plus,2024-06-07
+driver_0010,Zain Baig,4.91,DHA,go_plus,2023-03-15
+driver_0011,Saad Butt,4.99,Nazimabad,go_plus,2024-01-08
+driver_0012,Ahmed Chaudhry,4.04,Korangi,go,2023-10-23
+driver_0013,Maria Qureshi,4.52,North Nazimabad,bike,2023-05-05
+driver_0014,Ayesha Baig,4.39,Korangi,bike,2025-06-08
+driver_0015,Sara Memon,4.29,Clifton,go,2023-11-06
+driver_0016,Nida Siddiqui,3.69,North Nazimabad,bike,2024-09-28
+driver_0017,Ali Ansari,4.61,Nazimabad,business,2024-02-10
+driver_0018,Nida Sheikh,4.24,Korangi,go_plus,2022-11-10
+driver_0019,Asad Siddiqui,3.88,Malir,go_plus,2022-10-11
+driver_0020,Hina Khan,3.76,Malir,business,2023-01-08
+driver_0021,Tariq Malik,3.72,Gulistan-e-Johar,go,2023-03-22
+driver_0022,Hina Memon,3.83,Nazimabad,bike,2023-09-25
+driver_0023,Usman Baig,4.04,Malir,bike,2025-02-08
+driver_0024,Ayesha Malik,4.07,Landhi,go_plus,2023-01-03
+driver_0025,Ahmed Qureshi,3.69,Clifton,business,2022-09-08
+driver_0026,Zain Ansari,4.28,Nazimabad,go_plus,2025-04-26
+driver_0027,Hina Chaudhry,4.17,DHA,go,2025-06-14
+driver_0028,Nida Hussain,4.81,Clifton,go,2022-07-24
+driver_0029,Maria Chaudhry,4.81,Saddar,go_plus,2023-09-15
+driver_0030,Sara Iqbal,3.86,Gulistan-e-Johar,go_plus,2022-08-26
+driver_0031,Rabia Malik,3.67,Nazimabad,go,2022-04-06
+driver_0032,Nida Hussain,4.27,North Nazimabad,go,2023-07-01
+driver_0033,Saad Butt,4.9,Gulistan-e-Johar,business,2025-12-24
+driver_0034,Rabia Ansari,4.61,Gulshan,go_plus,2024-04-02
+driver_0035,Tariq Baig,4.36,Malir,go,2022-10-16
+driver_0036,Asad Farooqi,4.79,Gulshan,go,2022-03-03
+driver_0037,Sana Malik,4.55,Saddar,bike,2022-10-08
+driver_0038,Tariq Siddiqui,3.66,DHA,bike,2024-05-07
+driver_0039,Maria Qureshi,3.97,Gulshan,business,2025-06-25
+driver_0040,Bilal Khan,4.24,Landhi,go,2022-09-07
+driver_0041,Asad Butt,3.79,Malir,go,2023-06-10
+driver_0042,Hassan Hussain,4.77,Korangi,go,2024-11-04
+driver_0043,Sara Butt,3.76,DHA,go_plus,2024-05-20
+driver_0044,Usman Baig,4.08,Korangi,bike,2024-01-03
+driver_0045,Nida Awan,3.99,Clifton,business,2023-11-09
+driver_0046,Hassan Baig,4.22,North Nazimabad,go,2022-02-23
+driver_0047,Sara Memon,3.65,Malir,go_plus,2025-03-02
+driver_0048,Hamza Raza,4.86,Clifton,business,2023-11-08
+driver_0049,Fatima Raza,4.69,North Nazimabad,go_plus,2023-03-26
+driver_0050,Hassan Farooqi,4.18,Gulshan,business,2025-11-28
+driver_0051,Ayesha Butt,3.82,DHA,bike,2022-08-08
+driver_0052,Usman Awan,4.89,Malir,business,2023-04-01
+driver_0053,Usman Iqbal,4.06,DHA,business,2024-11-17
+driver_0054,Saad Ansari,4.97,Nazimabad,business,2022-02-09
+driver_0055,Hassan Siddiqui,4.95,Korangi,go,2022-10-14
+driver_0056,Imran Baig,4.7,North Nazimabad,go,2025-10-07
+driver_0057,Zain Khan,4.59,Clifton,go_plus,2024-07-03
+driver_0058,Maria Siddiqui,4.04,DHA,business,2024-11-14
+driver_0059,Maria Iqbal,4.58,Nazimabad,go_plus,2023-07-22
+driver_0060,Saad Ansari,4.65,Gulshan,business,2025-09-27
+driver_0061,Ali Butt,4.0,North Nazimabad,business,2025-08-15
+driver_0062,Usman Memon,4.26,Gulshan,go,2024-09-22
+driver_0063,Sana Raza,3.73,Saddar,business,2023-04-05
+driver_0064,Ali Khan,3.94,Gulistan-e-Johar,go,2025-07-21
+driver_0065,Tariq Qureshi,4.61,North Nazimabad,bike,2025-04-05
+driver_0066,Ali Farooqi,4.65,DHA,bike,2023-03-26
+driver_0067,Asad Hussain,3.67,Saddar,go,2025-03-26
+driver_0068,Omar Ansari,4.34,Nazimabad,business,2025-10-27
+driver_0069,Asad Iqbal,4.76,Nazimabad,bike,2023-12-28
+driver_0070,Hina Hussain,3.96,Saddar,business,2025-11-08
+driver_0071,Zain Hussain,3.71,Korangi,go_plus,2024-06-11
+driver_0072,Rabia Malik,3.79,Saddar,bike,2023-12-07
+driver_0073,Bilal Iqbal,4.17,Nazimabad,bike,2025-01-07
+driver_0074,Nida Iqbal,4.87,Landhi,go,2025-08-01
+driver_0075,Imran Butt,4.65,North Nazimabad,go_plus,2025-04-09
+driver_0076,Nida Hussain,3.64,Malir,bike,2023-08-05
+driver_0077,Sana Memon,3.64,North Nazimabad,go,2022-11-14
+driver_0078,Sara Awan,4.25,Clifton,business,2025-06-07
+driver_0079,Omar Raza,4.07,North Nazimabad,business,2025-05-27
+driver_0080,Bilal Hussain,3.63,Nazimabad,go,2024-04-21
+driver_0081,Bilal Chaudhry,4.94,Clifton,go,2023-04-27
+driver_0082,Ali Siddiqui,3.81,Gulshan,bike,2022-10-07
+driver_0083,Omar Baig,3.96,Malir,go_plus,2022-03-10
+driver_0084,Fatima Siddiqui,3.64,Korangi,bike,2025-12-07
+driver_0085,Bilal Siddiqui,4.57,Saddar,go,2024-11-20
+driver_0086,Fatima Chaudhry,4.98,Clifton,business,2025-11-12
+driver_0087,Bilal Memon,4.51,Clifton,bike,2025-02-14
+driver_0088,Imran Ansari,4.85,Gulistan-e-Johar,go_plus,2025-03-24
+driver_0089,Asad Ansari,3.98,Nazimabad,bike,2025-07-27
+driver_0090,Tariq Butt,4.05,Saddar,go,2024-08-08
+driver_0091,Omar Siddiqui,4.45,North Nazimabad,business,2022-08-28
+driver_0092,Maria Sheikh,4.28,Malir,business,2024-05-20
+driver_0093,Zain Memon,3.61,Saddar,go,2023-12-14
+driver_0094,Hina Memon,4.66,Gulistan-e-Johar,bike,2025-01-03
+driver_0095,Hamza Qureshi,4.17,Saddar,business,2024-08-18
+driver_0096,Asad Raza,4.2,Nazimabad,business,2024-12-15
+driver_0097,Zain Butt,3.95,DHA,go_plus,2024-02-24
+driver_0098,Rabia Chaudhry,4.57,Saddar,go_plus,2025-05-24
+driver_0099,Tariq Chaudhry,4.33,Korangi,go,2023-05-08
+driver_0100,Imran Sheikh,4.02,Nazimabad,go_plus,2024-01-02
+driver_0101,Rabia Butt,4.58,Gulshan,bike,2022-01-19
+driver_0102,Hamza Hussain,4.27,Malir,go_plus,2022-05-28
+driver_0103,Hina Malik,4.75,North Nazimabad,bike,2022-10-21
+driver_0104,Ahmed Sheikh,3.81,Landhi,business,2022-04-04
+driver_0105,Rabia Chaudhry,4.18,Landhi,go_plus,2025-08-15
+driver_0106,Hamza Awan,4.42,North Nazimabad,business,2022-10-24
+driver_0107,Fatima Chaudhry,3.89,Saddar,business,2022-03-08
+driver_0108,Hassan Memon,3.71,Clifton,bike,2025-12-20
+driver_0109,Hina Butt,3.65,Korangi,business,2025-02-22
+driver_0110,Ayesha Farooqi,3.97,Landhi,go_plus,2025-02-18
+driver_0111,Ayesha Ansari,3.81,Korangi,go_plus,2022-01-06
+driver_0112,Hamza Siddiqui,4.65,Landhi,business,2025-02-15
+driver_0113,Hamza Baig,4.16,Korangi,bike,2025-02-20
+driver_0114,Ahmed Farooqi,4.2,Malir,business,2022-02-08
+driver_0115,Tariq Siddiqui,4.93,Korangi,go,2023-08-17
+driver_0116,Omar Farooqi,3.99,Landhi,bike,2025-02-16
+driver_0117,Imran Iqbal,4.07,DHA,go_plus,2024-07-23
+driver_0118,Hina Butt,4.53,North Nazimabad,go,2025-02-11
+driver_0119,Zain Raza,3.76,North Nazimabad,go,2025-07-02
+driver_0120,Usman Memon,4.11,Gulistan-e-Johar,bike,2022-04-09
+driver_0121,Rabia Sheikh,4.9,Gulistan-e-Johar,bike,2022-01-21
+driver_0122,Sana Chaudhry,3.94,Gulshan,business,2022-09-14
+driver_0123,Bilal Qureshi,4.99,DHA,bike,2022-11-27
+driver_0124,Sara Hussain,4.91,Korangi,business,2025-08-16
+driver_0125,Ayesha Hussain,4.37,North Nazimabad,go_plus,2023-02-09
+driver_0126,Nida Raza,4.91,Nazimabad,business,2022-05-24
+driver_0127,Hamza Awan,4.42,Gulistan-e-Johar,go_plus,2025-09-16
+driver_0128,Imran Raza,4.37,Nazimabad,bike,2025-06-28
+driver_0129,Usman Baig,3.93,North Nazimabad,go_plus,2025-01-11
+driver_0130,Hina Baig,4.88,North Nazimabad,bike,2023-08-02
+driver_0131,Sara Memon,4.95,Malir,go,2025-02-17
+driver_0132,Omar Khan,4.61,North Nazimabad,go_plus,2022-08-26
+driver_0133,Zain Raza,4.47,North Nazimabad,go,2024-11-28
+driver_0134,Rabia Iqbal,4.94,Gulistan-e-Johar,go,2022-04-21
+driver_0135,Hamza Qureshi,4.65,North Nazimabad,go,2022-08-06
+driver_0136,Hamza Farooqi,3.64,Malir,go,2024-06-12
+driver_0137,Nida Sheikh,3.94,North Nazimabad,go_plus,2023-03-03
+driver_0138,Sana Awan,4.14,Saddar,bike,2023-04-15
+driver_0139,Zain Hussain,3.96,Clifton,bike,2024-11-18
+driver_0140,Hassan Malik,4.22,Malir,business,2025-12-09
+driver_0141,Omar Awan,4.02,North Nazimabad,bike,2022-04-13
+driver_0142,Tariq Raza,4.4,Korangi,go,2025-05-01
+driver_0143,Tariq Awan,4.56,Clifton,bike,2024-04-20
+driver_0144,Imran Qureshi,4.49,Landhi,business,2023-11-04
+driver_0145,Ahmed Butt,4.7,Clifton,business,2023-02-10
+driver_0146,Maria Baig,4.18,Saddar,go_plus,2024-09-17
+driver_0147,Zain Awan,3.83,Gulistan-e-Johar,business,2024-02-15
+driver_0148,Bilal Sheikh,4.66,Saddar,bike,2024-02-26
+driver_0149,Saad Khan,3.97,DHA,bike,2024-11-24
+driver_0150,Zain Siddiqui,4.13,Malir,go,2023-08-01
+driver_0151,Sana Farooqi,4.92,Malir,go_plus,2022-11-27
+driver_0152,Omar Farooqi,4.58,North Nazimabad,go,2023-01-02
+driver_0153,Hamza Hussain,3.76,Saddar,go_plus,2025-08-12
+driver_0154,Rabia Iqbal,4.42,Gulshan,bike,2022-08-20
+driver_0155,Nida Butt,3.65,Malir,go_plus,2025-08-08
+driver_0156,Imran Malik,4.97,Malir,business,2022-07-09
+driver_0157,Usman Malik,4.93,Gulistan-e-Johar,go,2023-11-21
+driver_0158,Sana Khan,3.67,Malir,go_plus,2023-10-07
+driver_0159,Bilal Awan,4.67,Saddar,go_plus,2023-06-25
+driver_0160,Sara Chaudhry,4.86,Clifton,business,2023-03-18
+driver_0161,Zain Chaudhry,3.84,Clifton,go_plus,2022-06-26
+driver_0162,Ayesha Siddiqui,4.05,Gulshan,business,2022-03-24
+driver_0163,Nida Memon,3.76,DHA,bike,2025-06-17
+driver_0164,Tariq Malik,4.23,Saddar,go,2024-08-21
+driver_0165,Ali Khan,5.0,North Nazimabad,bike,2022-08-23
+driver_0166,Omar Malik,4.86,Malir,go_plus,2022-03-09
+driver_0167,Sana Ansari,4.42,Malir,bike,2024-08-17
+driver_0168,Sana Iqbal,3.74,DHA,go_plus,2025-08-08
+driver_0169,Nida Raza,4.76,North Nazimabad,bike,2022-06-14
+driver_0170,Maria Ansari,3.96,Gulshan,bike,2022-02-27
+driver_0171,Bilal Malik,4.2,Malir,go_plus,2022-10-18
+driver_0172,Rabia Raza,4.54,North Nazimabad,business,2025-12-02
+driver_0173,Hamza Siddiqui,4.04,DHA,go_plus,2023-11-16
+driver_0174,Ayesha Awan,3.75,Nazimabad,business,2022-05-19
+driver_0175,Ayesha Chaudhry,4.2,Nazimabad,go,2024-01-06
+driver_0176,Zain Baig,4.67,Malir,business,2022-03-28
+driver_0177,Sara Siddiqui,4.52,DHA,go_plus,2022-02-24
+driver_0178,Asad Qureshi,4.13,Gulistan-e-Johar,business,2023-06-10
+driver_0179,Maria Chaudhry,4.92,Landhi,go,2022-03-06
+driver_0180,Sana Khan,4.54,Korangi,bike,2025-08-20
+driver_0181,Omar Iqbal,3.98,Nazimabad,go,2024-07-04
+driver_0182,Hamza Ansari,4.55,Gulistan-e-Johar,business,2022-04-13
+driver_0183,Sana Khan,3.61,Korangi,go_plus,2023-05-10
+driver_0184,Maria Malik,3.61,North Nazimabad,go_plus,2023-07-18
+driver_0185,Ayesha Memon,4.38,Malir,go,2025-12-02
+driver_0186,Nida Khan,4.24,DHA,business,2025-10-13
+driver_0187,Nida Butt,3.76,Clifton,business,2023-10-15
+driver_0188,Imran Malik,4.21,DHA,go_plus,2025-10-13
+driver_0189,Asad Malik,4.15,Korangi,business,2023-06-25
+driver_0190,Hassan Malik,4.31,DHA,go_plus,2024-06-24
+driver_0191,Sara Qureshi,3.74,Korangi,go_plus,2023-10-05
+driver_0192,Bilal Sheikh,4.93,Gulistan-e-Johar,bike,2025-11-19
+driver_0193,Sana Raza,4.81,Malir,go_plus,2025-02-16
+driver_0194,Omar Ansari,4.02,Korangi,go,2024-09-03
+driver_0195,Hamza Hussain,4.23,Clifton,business,2024-02-21
+driver_0196,Bilal Siddiqui,4.43,North Nazimabad,bike,2022-08-26
+driver_0197,Tariq Ansari,3.86,Landhi,bike,2023-01-15
+driver_0198,Fatima Chaudhry,4.86,Malir,go,2023-01-08
+driver_0199,Omar Hussain,4.33,Landhi,go_plus,2024-06-10
+driver_0200,Saad Iqbal,4.68,Landhi,go,2024-02-11

@@ -1,0 +1,28 @@
+name: rideshare
+version: "1.0.0"
+config-version: 2
+
+profile: rideshare
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  rideshare:
+    staging:
+      +materialized: view
+      +schema: staging        # builds in RIDESHARE.GOLD_staging (prefix + custom)
+    marts:
+      +materialized: table
+      +schema: gold           # the Gold layer lands here
+
+seeds:
+  rideshare:
+    +schema: gold
+    seed_drivers:
+      +column_types:
+        rating: float

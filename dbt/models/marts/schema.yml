@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: dim_driver
+    description: "Driver dimension."
+    columns:
+      - name: driver_id
+        tests: [unique, not_null]
+
+  - name: dim_rider
+    description: "Rider dimension."
+    columns:
+      - name: rider_id
+        tests: [unique, not_null]
+
+  - name: fct_rides
+    description: "One row per completed ride, enriched with driver & rider attributes."
+    columns:
+      - name: ride_id
+        tests: [unique, not_null]
+      - name: city
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["Karachi"]
+      - name: revenue
+        tests:
+          - not_null
+      - name: driver_id
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_driver')
+                field: driver_id
+
+  - name: fct_daily_city_metrics
+    description: "Clean daily city metrics (Gold)."
+    columns:
+      - name: metric_date
+        tests: [not_null]
+      - name: total_rides
+        tests: [not_null]
+
+  - name: fct_hourly_demand
+    description: "Hourly demand per city with peak-hour flag (Gold)."
+    columns:
+      - name: demand_date
+        tests: [not_null]
+      - name: hour_of_day
+        tests: [not_null]
