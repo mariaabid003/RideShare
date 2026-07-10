@@ -1,0 +1,85 @@
+# Phase 7 - local Airflow (LocalExecutor + Postgres) that orchestrates the
+# nightly RideShare batch. Kept in its own compose file so it starts/stops
+# independently of the Kafka/Spark streaming stack.
+#
+#   Build + start:   docker compose -f airflow/docker-compose.airflow.yml up -d --build
+#   Web UI:          http://localhost:8081   (login airflow / airflow)
+#   Stop:            docker compose -f airflow/docker-compose.airflow.yml down
+#
+# The whole project is mounted read/write at /opt/airflow/project so the DAG's
+# tasks can read the data lake and write Silver / dbt output back to your host.
+
+x-airflow-common: &airflow-common
+  build:
+    context: ..                       # project root (needs warehouse/ + dq/ reqs)
+    dockerfile: airflow/Dockerfile
+  environment: &airflow-env
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+    AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "true"
+    JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+  volumes:
+    - ..:/opt/airflow/project          # project root (data lake, warehouse, dbt, dq, spark)
+    - ./dags:/opt/airflow/dags
+    - airflow-logs:/opt/airflow/logs
+  user: "${AIRFLOW_UID:-50000}:0"
+  depends_on:
+    postgres:
+      condition: service_healthy
+
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 10s
+      retries: 5
+    restart: unless-stopped
+
+  # One-shot: init the metadata DB and create the admin user, then exit.
+  airflow-init:
+    <<: *airflow-common
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        airflow db migrate
+        airflow users create \
+          --username airflow --password airflow \
+          --firstname Maria --lastname Abid \
+          --role Admin --email mmrlfyp@gmail.com || true
+    restart: on-failure
+
+  airflow-webserver:
+    <<: *airflow-common
+    command: webserver
+    ports:
+      - "8081:8080"
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
+
+  airflow-scheduler:
+    <<: *airflow-common
+    command: scheduler
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
+
+volumes:
+  postgres-db:
+  airflow-logs:

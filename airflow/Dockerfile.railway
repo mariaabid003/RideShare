@@ -1,0 +1,33 @@
+# Airflow image for deploying to Railway (or any host without bind-mounts).
+#
+# Same as airflow/Dockerfile, but it BAKES the whole project + DAGs into the
+# image, because in the cloud there's no laptop folder to mount. Build context
+# must be the PROJECT ROOT (set "Dockerfile Path" = airflow/Dockerfile.railway
+# and leave Root Directory empty in Railway).
+FROM apache/airflow:2.9.3-python3.11
+
+# --- Java 17 for PySpark (needs root) ---
+USER root
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends openjdk-17-jre-headless procps \
+    && rm -rf /var/lib/apt/lists/*
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+
+COPY warehouse/requirements.txt /tmp/warehouse-req.txt
+COPY dq/requirements.txt        /tmp/dq-req.txt
+RUN mkdir -p /opt/venv && chown -R airflow: /opt/venv
+
+# --- Isolated virtualenvs (per pipeline step) ---
+USER airflow
+RUN python -m venv /opt/venv/spark \
+    && /opt/venv/spark/bin/pip install --no-cache-dir \
+       pyspark==3.5.1 pandas==2.2.2 pyarrow==16.1.0
+RUN python -m venv /opt/venv/warehouse \
+    && /opt/venv/warehouse/bin/pip install --no-cache-dir -r /tmp/warehouse-req.txt
+RUN python -m venv /opt/venv/dq \
+    && /opt/venv/dq/bin/pip install --no-cache-dir -r /tmp/dq-req.txt
+
+# --- Bake the project + DAGs into the image (no bind-mounts in the cloud) ---
+# The DAG expects the project at /opt/airflow/project and DAGs at /opt/airflow/dags.
+COPY --chown=airflow:0 . /opt/airflow/project
+COPY --chown=airflow:0 airflow/dags /opt/airflow/dags

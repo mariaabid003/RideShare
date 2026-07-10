@@ -215,8 +215,21 @@ dbt run  --profiles-dir .     # builds staging views + Gold tables
 dbt test --profiles-dir .     # runs the schema tests
 ```
 
-After this, the Gold tables live in `RIDESHARE.GOLD` — ready for Power BI in
+After this, the Gold tables live in `RIDESHARE.GOLD_GOLD` — ready for Power BI in
 Phase 6.
+
+> dbt prefixes the profile schema (`GOLD`) with each model's custom schema, so the
+> marts land in `GOLD_GOLD` and the staging views in `GOLD_STAGING`.
+
+### Verify the load
+
+`warehouse/verify_load.py` connects to Snowflake and prints row counts for every
+RAW and GOLD table, checks referential integrity on `fct_rides`, and previews a
+few rows:
+
+```bash
+python warehouse/verify_load.py
+```
 
 > The loader uses `overwrite=True` (truncate + reload) and dbt models are rebuilt
 > each run, so the whole step is safely re-runnable. Secrets stay out of the repo:
@@ -261,8 +274,67 @@ publish steps never run and Airflow fires the failure alert. That's the
 > The script reads `BRONZE_PATH` / `SILVER_PATH` env vars (defaulting to the local
 > data lake), so the same code validates whatever paths Airflow passes it.
 
-## Next: Phase 6 — connect Power BI to the Snowflake Gold tables and build the
-dashboards (live demand map, revenue trends, peak hours, driver performance).
+## Phase 6 — Power BI dashboard (done)
 
-## Phase 7 — Airflow orchestrates the nightly batch: Silver job -> data-quality
-gate -> dbt -> alert on failure.
+Power BI Desktop connects to the Snowflake Gold layer (`RIDESHARE.GOLD_GOLD`,
+Import mode) and models a small star schema: `fct_rides` joined to `dim_driver`
+and `dim_rider`. Measures (DAX) drive the visuals:
+
+* KPI cards — total revenue, total rides, avg fare, revenue per ride, avg driver
+  rating, active drivers
+* revenue by vehicle type, revenue by rider segment, demand by hour (peak flagged)
+* a driver-performance table
+
+Refresh it manually in Desktop, or publish to the Power BI Service and schedule a
+daily refresh **after** the nightly Airflow run.
+
+## Phase 7 — Airflow orchestration (done)
+
+`airflow/` holds a self-contained Airflow stack (LocalExecutor + Postgres) that
+runs the nightly batch on a schedule:
+
+```
+silver_batch  →  dq_gate  →  load_raw  →  dbt_build
+(Spark job #2)   (GE gate)   (→ RAW)      (→ GOLD + tests)
+```
+
+Scheduled `0 2 * * *`. If any task fails — including the data-quality gate, which
+exits non-zero on bad data — the run stops and the `on_failure` alert fires. Each
+step runs in its own virtualenv baked into the image (`airflow/Dockerfile`), and
+the project is mounted at `/opt/airflow/project`.
+
+### Run it locally
+
+```bash
+docker compose -f airflow/docker-compose.airflow.yml up -d --build
+# UI at http://localhost:8081  (login airflow / airflow)
+```
+
+If login fails, create the admin user once:
+
+```bash
+docker compose -f airflow/docker-compose.airflow.yml exec airflow-webserver \
+  airflow users create --username airflow --password airflow \
+  --firstname Maria --lastname Abid --role Admin --email you@example.com
+```
+
+Un-pause the `rideshare_daily` DAG and trigger it, or let it run nightly.
+
+### Deploy (runs without your laptop)
+
+`airflow/Dockerfile.railway` bakes the project + DAGs into the image for hosts
+without bind-mounts. It deploys to a small always-on VM or a PaaS like Railway
+(one Airflow service + managed Postgres); set the Snowflake and Airflow env vars
+on the host instead of shipping `.env`.
+
+## Project layout
+
+```
+producer/    Phase 1 — Kafka event simulator
+spark/       Phase 2 & 3 — Bronze stream + Silver batch jobs
+dq/          Phase 5 — Great Expectations data-quality gate
+warehouse/   Phase 4 — Snowflake setup, loader, verify script
+dbt/         Phase 4 — staging + Gold models, seeds, tests
+airflow/     Phase 7 — nightly orchestration (+ deploy image)
+docker-compose.yml   Kafka + Spark streaming stack
+```

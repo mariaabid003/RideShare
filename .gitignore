@@ -36,6 +36,18 @@ logs/
 dq/gx/uncommitted/
 dq/great_expectations/uncommitted/
 
+# ===== Airflow =====
+airflow/logs/
+airflow/plugins/
+airflow.cfg
+airflow.db
+webserver_config.py
+standalone_admin_password.txt
+*.pid
+
+# ===== Railway / deploy =====
+.railway/
+
 # ===== Docker =====
 # (compose files ARE tracked; only local volumes/state are ignored)
 
