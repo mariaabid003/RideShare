@@ -1,0 +1,12 @@
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "build": {
+    "builder": "DOCKERFILE",
+    "dockerfilePath": "airflow/Dockerfile.railway"
+  },
+  "deploy": {
+    "startCommand": "bash -c \"airflow db migrate; airflow users create --username airflow --password \\\"$ADMIN_PASSWORD\\\" --firstname Maria --lastname Abid --role Admin --email mmrlfyp@gmail.com || true; airflow scheduler & exec airflow webserver --port 8080\"",
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 3
+  }
+}
