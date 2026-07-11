@@ -1,4 +1,4 @@
-# Real-Time Ride Sharing Pipeline (Careem Clone)
+# Real-Time Ride Sharing Pipeline 
 
 End-to-end data pipeline over a simulated ride-sharing service in Karachi.
 
@@ -8,7 +8,13 @@ Python (fake events) → Kafka → Spark Streaming → S3 (Bronze)
                                               → dbt → Snowflake (Gold) → Power BI
 Great Expectations  → data quality after each layer
 Airflow             → schedules & monitors the batch side
+
 ```
+
+# Power BI Dashboard
+<img width="1140" height="712" alt="image" src="https://github.com/user-attachments/assets/31ab3c48-85d5-423e-978f-fce1f6b1596e" />
+<img width="1145" height="700" alt="image" src="https://github.com/user-attachments/assets/e4d66e07-76f5-4cc8-9baf-a19f315dd260" />
+
 
 ## Phase 1 — Event Simulator (done)
 
